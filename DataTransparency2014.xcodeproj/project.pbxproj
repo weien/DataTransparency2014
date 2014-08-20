@@ -19,6 +19,8 @@
 		647DD30017C81398001D1921 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647DD2FF17C81398001D1921 /* QuartzCore.framework */; };
 		649AC03F17D5360000C3333B /* home-tabbaricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 649AC03D17D5360000C3333B /* home-tabbaricon.png */; };
 		649AC04017D5360000C3333B /* home-tabbaricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */; };
+		64C93A7819A452F0004F72D9 /* sponsor_icon_900.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */; };
+		64C93A7919A452F0004F72D9 /* sponsor_icon_900@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C93A7719A452F0004F72D9 /* sponsor_icon_900@2x.png */; };
 		64F09C6717B0400C007304A8 /* ZipDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F09C6617B0400C007304A8 /* ZipDownloader.m */; };
 		64F09C7517B04194007304A8 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F09C6B17B04194007304A8 /* ioapi.c */; };
 		64F09C7617B04194007304A8 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F09C6D17B04194007304A8 /* mztools.c */; };
@@ -75,6 +77,8 @@
 		647DD2FF17C81398001D1921 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		649AC03D17D5360000C3333B /* home-tabbaricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-tabbaricon.png"; sourceTree = "<group>"; };
 		649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-tabbaricon@2x.png"; sourceTree = "<group>"; };
+		64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sponsor_icon_900.png; sourceTree = "<group>"; };
+		64C93A7719A452F0004F72D9 /* sponsor_icon_900@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sponsor_icon_900@2x.png"; sourceTree = "<group>"; };
 		64F09C6517B0400C007304A8 /* ZipDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipDownloader.h; sourceTree = "<group>"; };
 		64F09C6617B0400C007304A8 /* ZipDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipDownloader.m; sourceTree = "<group>"; };
 		64F09C6A17B04194007304A8 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -211,27 +215,29 @@
 		64F1662F17A9852C0098A02B /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				6434078918EDAB00000A5BFF /* appicon-57.png */,
 				6434078A18EDAB00000A5BFF /* appicon-114.png */,
 				6434078B18EDAB00000A5BFF /* appicon-120.png */,
+				6434078918EDAB00000A5BFF /* appicon-57.png */,
+				649AC03D17D5360000C3333B /* home-tabbaricon.png */,
+				649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */,
 				6434078C18EDAB00000A5BFF /* iTunesArtwork.png */,
 				6434078D18EDAB00000A5BFF /* iTunesArtwork@2x.png */,
 				647DD2FB17C8062C001D1921 /* map-tabbaricon.png */,
 				647DD2FC17C8062C001D1921 /* map-tabbaricon@2x.png */,
-				64F1663017A985400098A02B /* UIButtonBarArrowLeft.png */,
-				64F1663117A985400098A02B /* UIButtonBarArrowLeft@2x.png */,
-				64F1663217A985400098A02B /* UIButtonBarArrowRight.png */,
-				64F1663317A985400098A02B /* UIButtonBarArrowRight@2x.png */,
-				64F1663F17A9C3790098A02B /* twitter-bird-light-bgs.png */,
-				64F1664017A9C3790098A02B /* twitter-bird-light-bgs@2x.png */,
+				64F0BDFB17AB37C60021DA00 /* news-tabbaricon.png */,
+				64F0BDFC17AB37C70021DA00 /* news-tabbaricon@2x.png */,
 				64F0BE0117AC46D40021DA00 /* noun_project_1331.png */,
 				64F0BE0217AC46D40021DA00 /* noun_project_1331@2x.png */,
 				64F0BE0517AC4FD80021DA00 /* program-tabbaricon.png */,
 				64F0BE0617AC4FD80021DA00 /* program-tabbaricon@2x.png */,
-				64F0BDFB17AB37C60021DA00 /* news-tabbaricon.png */,
-				64F0BDFC17AB37C70021DA00 /* news-tabbaricon@2x.png */,
-				649AC03D17D5360000C3333B /* home-tabbaricon.png */,
-				649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */,
+				64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */,
+				64C93A7719A452F0004F72D9 /* sponsor_icon_900@2x.png */,
+				64F1663F17A9C3790098A02B /* twitter-bird-light-bgs.png */,
+				64F1664017A9C3790098A02B /* twitter-bird-light-bgs@2x.png */,
+				64F1663017A985400098A02B /* UIButtonBarArrowLeft.png */,
+				64F1663117A985400098A02B /* UIButtonBarArrowLeft@2x.png */,
+				64F1663217A985400098A02B /* UIButtonBarArrowRight.png */,
+				64F1663317A985400098A02B /* UIButtonBarArrowRight@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -364,8 +370,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				64F27FF117A366E800C3272A /* InfoPlist.strings in Resources */,
+				64C93A7819A452F0004F72D9 /* sponsor_icon_900.png in Resources */,
 				64F27FF917A366E800C3272A /* Default.png in Resources */,
 				64F27FFB17A366E800C3272A /* Default@2x.png in Resources */,
+				64C93A7919A452F0004F72D9 /* sponsor_icon_900@2x.png in Resources */,
 				64F27FFD17A366E800C3272A /* Default-568h@2x.png in Resources */,
 				64F2800017A366E800C3272A /* MainStoryboard.storyboard in Resources */,
 				64F1663417A985400098A02B /* UIButtonBarArrowLeft.png in Resources */,
