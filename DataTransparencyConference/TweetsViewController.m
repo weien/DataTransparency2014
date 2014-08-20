@@ -18,7 +18,7 @@
 - (IBAction)presentTweetSheet:(id)sender {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweetSheet setInitialText:@"#datasummit14"];
+        [tweetSheet setInitialText:@"#DT2014"];
         [self presentViewController:tweetSheet animated:YES completion:nil];
     }
     else {
