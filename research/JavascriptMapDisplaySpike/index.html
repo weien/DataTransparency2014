@@ -1,0 +1,539 @@
+<!doctype html>
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+  <head runat="server">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7,IE=9">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+	<meta name="WebPartPageExpansion" content="full" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Hurricane Sandy Report</title>
+
+    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/nihilo/nihilo.css">
+    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css">
+    <link rel="stylesheet" href="css/map.css">
+    <script>var dojoConfig = { parseOnLoad: true };</script>
+    <script src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
+    <script>
+  
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dijit.TitlePane");
+      dojo.require("esri.map");
+      dojo.require("esri.tasks.query");
+	  dojo.require("esri.tasks.identify");
+	  dojo.require("esri.tasks.geometry");
+	  dojo.require("esri.layers.agsdynamic");
+      dojo.require("esri.dijit.Popup");
+	  dojo.require("esri.virtualearth.VETiledLayer");
+      dojo.require("esri.dijit.BasemapGallery");
+      dojo.require("esri.arcgis.utils");
+	  
+      var map,           
+		  FEMACountyLayerURL,
+		  FEMACountyLayer,
+		  PopLayerURL,
+		  PoPLayer,
+		  initExtent,
+		  basemapLayer,
+		  countyFIPS,
+		  vendorName;
+		  
+      function init() {
+        
+		//setup popup
+		var popup = new esri.dijit.Popup({
+          fillSymbol: new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,0,0.25]))
+        }, dojo.create("div"));
+		//initial extent
+		initExtent = new esri.geometry.Extent({"xmin":-128,"ymin":25,"xmax":-66,"ymax":49,"spatialReference":{"wkid":4326}});
+		
+		//base map layer		
+		var basemapLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer");
+        map = new esri.Map("map", {
+          
+          extent:initExtent,
+		  infoWindow: popup,
+		  sliderStyle: "large",
+		  showAttribution: false,
+		  logo:false
+        });
+		
+		//add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
+        var basemapGallery = new esri.dijit.BasemapGallery({
+          showArcGISBasemaps: true,
+          map: map
+		  
+        }, "basemapGallery");
+        basemapGallery.startup();
+        
+        dojo.connect(basemapGallery, "onError", function(msg) {console.log(msg)});
+		
+		dojo.connect(map, "onLoad", mapReady);
+		
+		//add sandy data
+		map.addLayer(basemapLayer);
+		FEMACountyLayerURL="http://gis.recovery.gov/ArcGISRecovery/rest/services/Sandy_FEMA_IMPACT_COUNTY/MapServer"
+		FEMACountyLayer = new esri.layers.ArcGISDynamicMapServiceLayer(FEMACountyLayerURL,{opacity: 0.5, visible: true});
+		map.addLayer(FEMACountyLayer);
+		
+		var FEMAImpactedAreaURL="http://gis.recovery.gov/ArcGISRecovery/rest/services/Sandy_FEMA_ImpactedArea/MapServer"
+		FEMAImpactedAreaLayer= new esri.layers.ArcGISDynamicMapServiceLayer(FEMAImpactedAreaURL,{opacity: 1, visible: true});		
+		map.addLayer(FEMAImpactedAreaLayer);
+
+		
+		PoPLayerURL="http://gis.recovery.gov/ArcGISRecovery/rest/services/SANDY_SummaryData/MapServer"
+		PoPLayer = new esri.layers.ArcGISDynamicMapServiceLayer(PoPLayerURL,{opacity: 1, visible: true});		
+		map.addLayer(PoPLayer);
+		
+		getState();
+		
+		vendorName = dojo.byId("Vendor").value;
+      }
+      
+	  
+	  function mapReady(map){
+       dojo.connect(map,"onClick",executeIdentifyTask);
+       //create identify tasks and setup parameters 
+       identifyTask = new esri.tasks.IdentifyTask(PoPLayerURL);
+       
+       identifyParams = new esri.tasks.IdentifyParameters();
+       identifyParams.tolerance = 5;
+       identifyParams.returnGeometry = true;
+       identifyParams.layerIds = [0];
+       identifyParams.layerOption = esri.tasks.IdentifyParameters.LAYER_OPTION_ALL;
+       identifyParams.width  = map.width;
+       identifyParams.height = map.height;
+      }
+      
+      function executeIdentifyTask(evt) {
+        identifyParams.geometry = evt.mapPoint;
+        identifyParams.mapExtent = map.extent;
+       
+        var deferred = identifyTask.execute(identifyParams);
+
+        deferred.addCallback(function(response) {     
+            // response is an array of identify result objects    
+            // Let's return an array of features.
+		    if (response.length==0)
+		    {
+			    map.infoWindow.visible = false;
+			    map.infoWindow.hide();
+			    return false;
+		    }
+		  
+		    var cvname = "";
+            if (isNotEmpty(vendorName))
+            {
+                cvname = trim(vendorName).toUpperCase()
+            }
+		    
+		    // filter out result based on vendor name
+		    var myResponse = new Array();
+		    var idx = 0;
+		    dojo.forEach(response, function(result) {
+			    var feature = result.feature;
+                var vname = feature.attributes["vendor_name"].toUpperCase();
+            
+                if (cvname.length == 0 || vname.indexOf(cvname) >= 0)
+                {
+            	    myResponse[idx] = result;
+            	    idx ++;
+			    }
+		    });
+
+		    return dojo.map(myResponse, function(result) {
+                var feature = result.feature;
+        	    var template = new esri.InfoTemplate("", "<b>Vendor:</b> ${vendor_name}<br/><b>Vendor City:</b> ${vendor_city}<br/><b>Vendor State:</b> ${vendor_state_code}<br/><b>Vendor ZIP:</b> ${vendor_zip_code} <br/><br/><b>Award ID/ IDV #:</b> ${piid}/${IDV} <br/><br/><b>Total Contract Value:</b> $${base_and_all_options_value} <br/><br/><b>Place Of Performance:</b> ${pop_city}, ${pop_state} <br/><br/><b>Department:</b> ${department_name} <br/><br/>");
+        	    feature.setInfoTemplate(template);
+        	    return feature;
+            });          
+        });
+
+      
+        // InfoWindow expects an array of features from each deferred
+        // object that you pass. If the response from the task execution 
+        // above is not an array of features, then you need to add a callback
+        // like the one above to post-process the response and return an
+        // array of features.
+        map.infoWindow.setFeatures([ deferred ]);
+        map.infoWindow.show(evt.mapPoint);
+      }
+	  
+	  //get state
+	  function getState()
+	  {
+		//get all the states
+		queryTask = new esri.tasks.QueryTask(FEMACountyLayerURL+"/0");
+        var query = new esri.tasks.Query();
+        query.returnGeometry = false;         
+        query.outFields = ["STATECODE"];
+        //query.where = "COUNT_ IS NOT NULL AND IMPACTRNK IS NOT NULL ORDER BY STATECODE";
+        query.where = "COUNT_ >0 ORDER BY STATECODE";
+        queryTask.execute(query,populateStateMenu);        
+      }
+	  
+	  //change state selection
+	  //get the county
+	  function changeState(sel)
+	  {
+	  
+		var stateCode = sel.value;
+
+		//select the feature in the dropdown list and add a graphic to map 
+		queryTask = new esri.tasks.QueryTask(FEMACountyLayerURL+"/0");
+        var query = new esri.tasks.Query();
+        query.returnGeometry = false;         
+        query.outFields = ["NAME","FIPS"];
+        query.where = "COUNT_ >0 AND STATECODE='"+stateCode+"' ORDER BY NAME";
+        queryTask.execute(query,populateCountyMenu);        
+      }
+	  
+	  
+	  function populateStateMenu(featureSet)	  
+	  {	  
+	    var values=[];
+		dojo.empty("State");
+		dojo.create("option",{value: "ALL", innerHTML: "--"}, "State");
+		var features = featureSet.features;	
+		for(var i=0; i<features.length;i++){	  
+			if (dojo.indexOf(values,features[i].attributes.STATECODE)==-1){
+			    values.push(features[i].attributes.STATECODE);
+				dojo.create("option",{value: features[i].attributes.STATECODE, innerHTML: features[i].attributes.STATECODE}, "State");	
+			}
+        }
+	  }
+	  
+	   function populateCountyMenu(featureSet)	  
+	  {	  
+		dojo.empty("County");
+		dojo.create("option",{value: "", innerHTML: " -- "}, "County");
+		var features = featureSet.features;	
+		for(var i=0; i<features.length;i++){	  
+            dojo.create("option",{value: features[i].attributes.FIPS, innerHTML: features[i].attributes.NAME}, "County");			
+        }
+	  }
+	  
+      function searchCountyInfo()
+	  {	 
+  		var stateName = dojo.byId("State").value;	 
+  		
+  		vendorName = dojo.byId("Vendor").value;
+  		
+		countyFIPS = "";
+	  	if (stateName!="ALL")
+		{
+			countyFIPS = dojo.byId("County").value;
+		}
+  		
+		dojo.empty("metricContent_Rank");
+	    dojo.empty("metricContent_NumAward");
+		dojo.empty("metricContent_TotalAwardValue");
+		dojo.empty("metricContent_NumIA");
+		
+		map.setExtent(initExtent);
+		map.graphics.clear();
+		
+		if (isNotEmpty(countyFIPS))
+		{
+			qt = new esri.tasks.QueryTask(FEMACountyLayerURL + "/0");
+			var query = new esri.tasks.Query();
+	        query.returnGeometry = true; 
+		    query.where = "FIPS='" + countyFIPS + "'";
+			query.outFields = ["STATECODE,NAME,ImpactRnk,IA_Applica,Count_,Sum_BASE_AND_ALL_OPTIONS_VALUE"];
+		    qt.execute(query, getCountyInfo);
+		}
+		
+		if (isNotEmpty(vendorName) || stateName != "ALL")
+		{
+			// filter dots display
+		    var where = "";
+		    
+		    if (isNotEmpty(vendorName))
+		    {
+		        where = "UPPER(vendor_name) like '%" + trim(vendorName).toUpperCase() + "%'";
+		    }
+		  	if (stateName != "ALL")
+			{
+			    if (where.length == 0)
+			    {
+			        where = "pop_state = '" + stateName + "'";
+			    }
+			    else 
+			    {
+				    where += " AND pop_state = '" + stateName + "'";
+				}
+			}
+		    if (isNotEmpty(countyFIPS))
+		    {
+		        where += " AND pop_county_fips = '" + countyFIPS + "'";
+		    }
+		    
+			var layerDefinitions = [];
+			layerDefinitions[0] = where;
+			layerDefinitions[1] = where;
+			layerDefinitions[2] = where;			
+			PoPLayer.setLayerDefinitions(layerDefinitions, true);
+
+			// calculate summary info
+			qt = new esri.tasks.QueryTask(PoPLayerURL + "/0");
+			var query = new esri.tasks.Query();
+	        query.returnGeometry = true; 
+		    query.where = where; 
+		    query.outFields = ["base_and_all_options_value"];
+		    qt.execute(query, showResult);		
+		}
+		else
+		{		
+			PoPLayer.setDefaultLayerDefinitions();		
+		}
+				
+		var initHref = "/funded/Sandy/Pages/TextView.aspx?data=SandyAwards";
+		if (stateName != "ALL")
+		{
+			initHref = initHref + "&STATE=" + stateName;
+		}
+		if (isNotEmpty(countyFIPS))
+		{
+			initHref = initHref + "&COUNTYFIPS=" + countyFIPS;
+		}
+		
+		if (isNotEmpty(vendorName))
+		{
+			initHref = initHref + "&VENDOR=" + vendorName;
+		}
+		
+		dojo.byId("toMapDataTextView").href = initHref;	
+	  }
+	  
+	  function isNotEmpty(myStr)
+	  {
+	      if (myStr != null && myStr.length > 0) 
+	      {
+	      	return trim(myStr).length > 0;
+	      }
+	      return false;
+	  }
+	  
+      function trim(str) {
+          return str.replace(/^\s+|\s+$/g,"");
+      }	  
+	  
+	  function showResult(data) {
+        if (data.features.length > 0)    
+		{	
+			var total = 0;
+			var totalAwards = 0.0;
+			
+			for (var i = 0; i < data.features.length; i ++)
+			{
+				totalAwards += data.features[i].attributes["base_and_all_options_value"];
+				total ++;
+			}
+			
+			dojo.byId("metricContent_Rank").innerHTML = "N/A";
+			dojo.byId("metricContent_NumAward").innerHTML  = formatNumber(Math.round(num(total)));
+			dojo.byId("metricContent_TotalAwardValue").innerHTML = "$" + formatNumber(Math.round(num(totalAwards)));
+			dojo.byId("metricContent_NumIA").innerHTML = "N/A";
+		}
+	  }
+	  
+	  function getCountyInfo(data) {
+			
+	        if (data.features.length>0)    
+			{	
+	        	map.setExtent(data.features[0].geometry.getExtent().expand(3), true);				
+				graphic=data.features[0];
+				var highlightSymbol =new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+										 new dojo.Color([0,0,0]),2);	
+				graphic.setSymbol(highlightSymbol);
+				this.map.graphics.clear();
+          		this.map.graphics.add(graphic);
+				
+				//display info on dashboard
+				var record = data.features[0].attributes;
+				if (record.ImpactRnk == null)
+					dojo.byId("metricContent_Rank").innerHTML = "N/A"
+				else
+					dojo.byId("metricContent_Rank").innerHTML  = record.ImpactRnk.split(" - ")[1];
+	            dojo.byId("metricContent_NumAward").innerHTML  = formatNumber(Math.round(num(record.Count_)));
+				dojo.byId("metricContent_TotalAwardValue").innerHTML = "$" + formatNumber(Math.round(num(record.Sum_BASE_AND_ALL_OPTIONS_VALUE)));
+				dojo.byId("metricContent_NumIA").innerHTML = formatNumber(Math.round(num(record.IA_Applica)));
+				//dojo.byId("metricContent_Pop").innerHTML = formatNumber(Math.round(num(record.Pop10)));
+	        }
+	  }
+	  
+	  function Reset() {
+			map.setExtent(initExtent);
+			map.graphics.clear();
+			PoPLayer.setDefaultLayerDefinitions();	
+			
+			dojo.byId("metricContent_Rank").innerHTML  = "";
+            dojo.byId("metricContent_NumAward").innerHTML  = "";
+			dojo.byId("metricContent_TotalAwardValue").innerHTML = "";
+			dojo.byId("metricContent_NumIA").innerHTML = "";
+			dojo.byId("State").value="ALL";
+			dojo.empty("County");
+			dojo.byId("Vendor").value = "";
+			
+ 			dojo.byId("toMapDataTextView").href = "/funded/Sandy/Pages/TextView.aspx?data=SandyAwards";
+	  }
+
+	/*
+   * Formats number
+   */
+  function formatNumber(num) {
+    var result = "";    
+    if (num!=null) {  
+      num  = Math.floor(num);
+      var sign = num<0? "-": "";
+      num = Math.abs(num);      
+      var splited = splitNumber(num.toString());
+      for (i=0; i<splited.length; i++) {
+        if (result.length>0) {
+          result += ",";
+        }
+        result+=splited[i];
+      }      
+      result = sign + result;
+    }
+    return result;
+  }
+  
+  function num(num,def) {
+    var n = new Number(num).valueOf();
+    return isNaN(n)? (def!=null? def: 0): n;
+  }
+  
+  function splitNumber(num) {
+    var result = [];
+    
+    if (num.length>3) {      
+      var head = num.substring(0,num.length-3);
+      var tail = num.substring(num.length-3);
+      var headSplit = splitNumber(head);
+      for (i=0; i<headSplit.length; i++) {
+        result.push(headSplit[i]);
+      }
+      result.push(tail);
+    } else if (num.length>0) {
+      result.push(num);
+    }
+    return result;
+  }
+
+      //show map on load 
+      dojo.ready(init);
+    </script>
+  
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">System Account</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:xd_Signature msdt:dt="string"></mso:xd_Signature>
+<mso:TemplateUrl msdt:dt="string"></mso:TemplateUrl>
+<mso:Order msdt:dt="string">65700.0000000000</mso:Order>
+<mso:xd_ProgID msdt:dt="string"></mso:xd_ProgID>
+<mso:ContentTypeId msdt:dt="string">0x0101000269E74498336343AA60FDCB0B43C8E4</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+  <body class="nihilo">
+  
+    <div id="mainWindow" 
+         data-dojo-type="dijit.layout.BorderContainer" 
+         data-dojo-props="design:'headline',gutters:false"
+         style="width: 100%; height: 100%; margin: 0;">
+		 
+      <div id="header" 
+           data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="region:'top'">
+		   
+				
+				<div id="selectionArea" >
+				 	 <label style="left:0px; position:relative">Select State </label>
+					 <select id ="State" onchange="changeState(this)" style="left:0px; position:relative" ></select>
+					 <label style="left:20px; position:relative"> County </label>
+					 <select id ="County"  style="left:20px; position:relative; width:150px" ></select>
+					 <label style="left:20px; position:relative"> Vendor </label>
+					 <input id="Vendor" type="text" size="20" style="left:20px; position:relative;">
+					 &nbsp;
+					 <button id="Zoom" onClick="searchCountyInfo()" style="left:20px; position:relative;">Go</button>					
+					 <button id="Reset" onClick="Reset()" style="left:45px;position:relative;">Reset</button>	
+				</div>
+				
+      
+	  
+	  </div>
+      <div id="map" class="shadow" 
+           data-dojo-type="dijit.layout.ContentPane"
+           data-dojo-props="region:'center'">
+		<div style="position:absolute; right:0px; top:0px; z-Index:999;">
+          <div data-dojo-type="dijit.TitlePane" 
+               data-dojo-props="title:'Switch Basemap', closable:false,  open:false">
+            <div data-dojo-type="dijit.layout.ContentPane" style="width:380px; height:280px; overflow:auto;">
+				<div id="basemapGallery" ></div>
+			</div>
+          </div>
+		</div> 
+		
+
+		<div style="position:absolute; bottom:0px; width:100%; z-Index:999; height:80px;">
+		  <div id="dashboardPane"
+			   data-dojo-type="dijit.layout.ContentPane"
+			   data-dojo-props="region:'bottom'" class="container">	
+		  </div>
+		</div>
+		<div class="dashboardPane" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'bottom'" 
+			style="position:absolute; bottom:1px; width:100%; z-Index:999; height:80px; " class="container">
+			<div class="box" ><div id="metricTitle">FEMA Impact Rank</div>
+					<div id="metricContent_Rank" class="metricContent"></div>
+			</div>
+			<div class="box" ><div id="metricTitle">Total Number of Awards</div>
+					<div id="metricContent_NumAward" class="metricContent"></div>
+			</div>
+			<div class="box" style="width:120px;"><div id="metricTitle">Total Award Amounts</div>
+					<div id="metricContent_TotalAwardValue" class="metricContent"></div>					
+			</div>
+			<div class="box"><div id="metricTitle">Total Number of IA Applicants</div>
+					<div id="metricContent_NumIA" class="metricContent"></div>
+			</div>
+			<!--div class="box"><div id="metricTitle">Population</div>
+					<div id="metricContent_Pop" style="font-size: 16pt;color: #333333;font-weight:bold;"></div>
+			</div-->
+			<div class="box" style="width:125px;"><div id="metricTitle">Map Legend</div>
+				<table style="border-spacing: 0px;" >
+					<tr>
+					<td>
+						<div class="legendValueText" >Low</div><div class="legendBlock" style="background-color: rgb(115, 178, 115)"></div>
+						 <div class="legendValueText" >Moderate</div><div class="legendBlock" style="background-color: rgb(255, 255, 0)"></div>
+						 <div class="legendValueText" >High</div><div class="legendBlock" style="background-color: rgb(255, 0, 0)"></div>
+						 <div class="legendValueText" >Very High</div><div class="legendBlock" style="background-color: rgb(132, 0, 168)"></div>
+					</td>
+					<!--
+					<td>
+					  <div class="legendValueText" style="margin-left: 0px; width: 85px"><img src="./images/BluePoP.png" />Awarded Contracts</div>
+		     		  <div class="legendValueText" style="margin-left: 0px; width: 85px"><img src="./images/OrangePoP.png" />Suppliers</div>				
+					</td>	
+					-->		
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+      </div>
+      
+    <div id="subfooter" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'bottom'">
+    	<div style="font-size: 12px; ">
+    	      <i>Source: FPDS</i> |  Updated: <i>7/11/2013</i> | 
+    	      <i><a id="toMapDataTextView" target="_search" href="/funded/Sandy/Pages/TextView.aspx?data=SandyAwards">Text View of Map Data</a></i>
+    	</div>
+    	<div id="textDebugging"></div>
+    </div>
+	  
+    </div>
+  </body>
+</html>
+
