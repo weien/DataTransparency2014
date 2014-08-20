@@ -104,7 +104,6 @@
 		64F1661917A6DEF00098A02B /* SpeakersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakersViewController.m; sourceTree = "<group>"; };
 		64F1661B17A6DEF90098A02B /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		64F1661C17A6DEF90098A02B /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
-		64F1661E17A6FFF10098A02B /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		64F1662117A806C30098A02B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		64F1662317A8560E0098A02B /* ExternalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalWebViewController.h; sourceTree = "<group>"; };
 		64F1662417A8560E0098A02B /* ExternalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternalWebViewController.m; sourceTree = "<group>"; };
@@ -118,14 +117,14 @@
 		64F1663317A985400098A02B /* UIButtonBarArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarArrowRight@2x.png"; sourceTree = "<group>"; };
 		64F1663F17A9C3790098A02B /* twitter-bird-light-bgs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-bird-light-bgs.png"; sourceTree = "<group>"; };
 		64F1664017A9C3790098A02B /* twitter-bird-light-bgs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-bird-light-bgs@2x.png"; sourceTree = "<group>"; };
-		64F27FE317A366E800C3272A /* DataSummit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataSummit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64F27FE317A366E800C3272A /* DT2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DT2014.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F27FE617A366E800C3272A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		64F27FE817A366E800C3272A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		64F27FEA17A366E800C3272A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		64F27FEE17A366E800C3272A /* DataSummit2014-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DataSummit2014-Info.plist"; sourceTree = "<group>"; };
+		64F27FEE17A366E800C3272A /* DataTransparency2014-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DataTransparency2014-Info.plist"; sourceTree = "<group>"; };
 		64F27FF017A366E800C3272A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64F27FF217A366E800C3272A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64F27FF417A366E800C3272A /* DataSummit2014-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataSummit2014-Prefix.pch"; sourceTree = "<group>"; };
+		64F27FF417A366E800C3272A /* DataTransparency2014-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataTransparency2014-Prefix.pch"; sourceTree = "<group>"; };
 		64F27FF517A366E800C3272A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		64F27FF617A366E800C3272A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		64F27FF817A366E800C3272A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -240,8 +239,7 @@
 		64F27FDA17A366E700C3272A = {
 			isa = PBXGroup;
 			children = (
-				64F1661E17A6FFF10098A02B /* TODO.txt */,
-				64F27FEC17A366E800C3272A /* DataSummit2014 */,
+				64F27FEC17A366E800C3272A /* DataTransparency2014 */,
 				64F27FE517A366E800C3272A /* Frameworks */,
 				64F27FE417A366E800C3272A /* Products */,
 			);
@@ -250,7 +248,7 @@
 		64F27FE417A366E800C3272A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64F27FE317A366E800C3272A /* DataSummit.app */,
+				64F27FE317A366E800C3272A /* DT2014.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,7 +267,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		64F27FEC17A366E800C3272A /* DataSummit2014 */ = {
+		64F27FEC17A366E800C3272A /* DataTransparency2014 */ = {
 			isa = PBXGroup;
 			children = (
 				64F1662F17A9852C0098A02B /* Images */,
@@ -289,17 +287,17 @@
 				64F09C6817B04187007304A8 /* SSZipArchive */,
 				64F27FED17A366E800C3272A /* Supporting Files */,
 			);
-			name = DataSummit2014;
+			name = DataTransparency2014;
 			path = DataTransparencyConference;
 			sourceTree = "<group>";
 		};
 		64F27FED17A366E800C3272A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				64F27FEE17A366E800C3272A /* DataSummit2014-Info.plist */,
+				64F27FEE17A366E800C3272A /* DataTransparency2014-Info.plist */,
 				64F27FEF17A366E800C3272A /* InfoPlist.strings */,
 				64F27FF217A366E800C3272A /* main.m */,
-				64F27FF417A366E800C3272A /* DataSummit2014-Prefix.pch */,
+				64F27FF417A366E800C3272A /* DataTransparency2014-Prefix.pch */,
 				64F27FF817A366E800C3272A /* Default.png */,
 				64F27FFA17A366E800C3272A /* Default@2x.png */,
 				64F27FFC17A366E800C3272A /* Default-568h@2x.png */,
@@ -310,9 +308,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		64F27FE217A366E800C3272A /* DataSummit */ = {
+		64F27FE217A366E800C3272A /* DT2014 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64F2800617A366E800C3272A /* Build configuration list for PBXNativeTarget "DataSummit" */;
+			buildConfigurationList = 64F2800617A366E800C3272A /* Build configuration list for PBXNativeTarget "DT2014" */;
 			buildPhases = (
 				64F27FDF17A366E800C3272A /* Sources */,
 				64F27FE017A366E800C3272A /* Frameworks */,
@@ -324,9 +322,9 @@
 			);
 			dependencies = (
 			);
-			name = DataSummit;
+			name = DT2014;
 			productName = DataTransparencyConference;
-			productReference = 64F27FE317A366E800C3272A /* DataSummit.app */;
+			productReference = 64F27FE317A366E800C3272A /* DT2014.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -343,7 +341,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 64F27FDE17A366E700C3272A /* Build configuration list for PBXProject "DataSummit2014" */;
+			buildConfigurationList = 64F27FDE17A366E700C3272A /* Build configuration list for PBXProject "DataTransparency2014" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -355,7 +353,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64F27FE217A366E800C3272A /* DataSummit */,
+				64F27FE217A366E800C3272A /* DT2014 */,
 			);
 		};
 /* End PBXProject section */
@@ -540,8 +538,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DataTransparencyConference/DataSummit2014-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/DataTransparencyConference/DataSummit2014-Info.plist";
+				GCC_PREFIX_HEADER = "DataTransparencyConference/DataTransparency2014-Prefix.pch";
+				INFOPLIST_FILE = "DataTransparencyConference/DataTransparency2014-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -557,8 +555,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DataTransparencyConference/DataSummit2014-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/DataTransparencyConference/DataSummit2014-Info.plist";
+				GCC_PREFIX_HEADER = "DataTransparencyConference/DataTransparency2014-Prefix.pch";
+				INFOPLIST_FILE = "DataTransparencyConference/DataTransparency2014-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -568,7 +566,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64F27FDE17A366E700C3272A /* Build configuration list for PBXProject "DataSummit2014" */ = {
+		64F27FDE17A366E700C3272A /* Build configuration list for PBXProject "DataTransparency2014" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64F2800417A366E800C3272A /* Debug */,
@@ -577,7 +575,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64F2800617A366E800C3272A /* Build configuration list for PBXNativeTarget "DataSummit" */ = {
+		64F2800617A366E800C3272A /* Build configuration list for PBXNativeTarget "DT2014" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64F2800717A366E800C3272A /* Debug */,
