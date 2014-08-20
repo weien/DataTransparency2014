@@ -30,7 +30,7 @@ body {
 }
 .header {
     padding:12px 0px 7px 0px;
-    text-align: center;
+    text-align: right;
     font-weight: bold;
     
     background: #ffffff;/*#EDEDED;*/
@@ -45,7 +45,7 @@ body {
     /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#252525', endColorstr='#3b4e5d',GradientType=0 ); /* IE6-9 */
 }
 .header-padding {
-    /*padding-right: 22px;*/
+    padding-right: 22px;
 }
 h1 {
     font-size: 24px;
@@ -72,7 +72,7 @@ h2 {
     margin-bottom: 9px;
     
 	text-align: right;
-	padding-right: 22px;    
+	/*padding-right: 22px;*/
 }
 .info div {
     margin-bottom: 6px;
