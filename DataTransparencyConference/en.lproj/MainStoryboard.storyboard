@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zvV-jb-jsp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zvV-jb-jsp">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -68,6 +68,7 @@
                         <segue destination="dHG-rR-kt3" kind="relationship" relationship="viewControllers" id="9k8-S5-YWy"/>
                         <segue destination="Afv-db-0bp" kind="relationship" relationship="viewControllers" id="zUG-33-3Xu"/>
                         <segue destination="RH0-C3-qxX" kind="relationship" relationship="viewControllers" id="1k9-ga-Ta1"/>
+                        <segue destination="v02-Fd-DOZ" kind="relationship" relationship="viewControllers" id="JKG-Q9-esf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdC-5R-N4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,7 +370,7 @@
                     <attributedString key="userComments">
                         <fragment content="Currently unused">
                             <attributes>
-                                <font key="NSFont" metaFont="controlContent" size="11"/>
+                                <font key="NSFont" metaFont="smallSystem"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -380,7 +381,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZu-vE-EhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="1874"/>
+            <point key="canvasLocation" x="431" y="1746"/>
         </scene>
         <!--Data Map View Controller - Data Map-->
         <scene sceneID="4d3-FM-8QB">
@@ -439,7 +440,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXs-Gw-s7Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1738" y="1928"/>
+            <point key="canvasLocation" x="806" y="2308"/>
+        </scene>
+        <!--Custom Navigation View Controller - Sponsors-->
+        <scene sceneID="rI7-Yi-uU4">
+            <objects>
+                <navigationController id="v02-Fd-DOZ" customClass="CustomNavigationViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sponsors" image="sponsor_icon_900.png" id="JEu-cW-4rp"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="JgD-cR-Dmq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RBt-1D-4cm" kind="relationship" relationship="rootViewController" id="PJd-B2-Qxh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FyA-6A-ord" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1559" y="1942"/>
+        </scene>
+        <!--Sponsors View Controller-->
+        <scene sceneID="wip-YJ-HPG">
+            <objects>
+                <viewController id="RBt-1D-4cm" customClass="SponsorsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0RR-fZ-Irn">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="oua-QY-kmK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176889999999" green="0.92941176889999999" blue="0.92941176889999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="D9I-VI-DmT"/>
+                    <connections>
+                        <outlet property="DTCWebView" destination="oua-QY-kmK" id="TNI-6H-BBz"/>
+                        <segue destination="Pcp-ez-5Gz" kind="push" id="ZGV-xL-PSQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ncj-79-1pj" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2243" y="2020"/>
         </scene>
     </scenes>
     <resources>
@@ -449,6 +496,7 @@
         <image name="map-tabbaricon.png" width="27" height="27"/>
         <image name="noun_project_1331.png" width="30" height="30"/>
         <image name="program-tabbaricon.png" width="26" height="28"/>
+        <image name="sponsor_icon_900.png" width="28" height="28"/>
         <image name="twitter-bird-light-bgs.png" width="30" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -458,8 +506,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uBQ-rR-sa7"/>
+        <segue reference="ZGV-xL-PSQ"/>
         <segue reference="Bgm-v7-YOb"/>
         <segue reference="CiK-lh-xTj"/>
-        <segue reference="ei3-2A-QwE"/>
     </inferredMetricsTieBreakers>
 </document>

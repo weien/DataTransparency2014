@@ -21,6 +21,7 @@
 		649AC04017D5360000C3333B /* home-tabbaricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */; };
 		64C93A7819A452F0004F72D9 /* sponsor_icon_900.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */; };
 		64C93A7919A452F0004F72D9 /* sponsor_icon_900@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C93A7719A452F0004F72D9 /* sponsor_icon_900@2x.png */; };
+		64C93A7C19A45735004F72D9 /* SponsorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C93A7B19A45735004F72D9 /* SponsorsViewController.m */; };
 		64F09C6717B0400C007304A8 /* ZipDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F09C6617B0400C007304A8 /* ZipDownloader.m */; };
 		64F09C7517B04194007304A8 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F09C6B17B04194007304A8 /* ioapi.c */; };
 		64F09C7617B04194007304A8 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F09C6D17B04194007304A8 /* mztools.c */; };
@@ -79,6 +80,8 @@
 		649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-tabbaricon@2x.png"; sourceTree = "<group>"; };
 		64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sponsor_icon_900.png; sourceTree = "<group>"; };
 		64C93A7719A452F0004F72D9 /* sponsor_icon_900@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sponsor_icon_900@2x.png"; sourceTree = "<group>"; };
+		64C93A7A19A45735004F72D9 /* SponsorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SponsorsViewController.h; sourceTree = "<group>"; };
+		64C93A7B19A45735004F72D9 /* SponsorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SponsorsViewController.m; sourceTree = "<group>"; };
 		64F09C6517B0400C007304A8 /* ZipDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipDownloader.h; sourceTree = "<group>"; };
 		64F09C6617B0400C007304A8 /* ZipDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipDownloader.m; sourceTree = "<group>"; };
 		64F09C6A17B04194007304A8 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				64F1661917A6DEF00098A02B /* SpeakersViewController.m */,
 				64F1661B17A6DEF90098A02B /* TweetsViewController.h */,
 				64F1661C17A6DEF90098A02B /* TweetsViewController.m */,
+				64C93A7A19A45735004F72D9 /* SponsorsViewController.h */,
+				64C93A7B19A45735004F72D9 /* SponsorsViewController.m */,
 			);
 			name = "Low Level";
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				64F09C7817B04194007304A8 /* zip.c in Sources */,
 				64F09C7917B04194007304A8 /* SSZipArchive.m in Sources */,
 				6429EBB517B559CC00D39529 /* DTCUtil.m in Sources */,
+				64C93A7C19A45735004F72D9 /* SponsorsViewController.m in Sources */,
 				647DD2FA17C6C834001D1921 /* DataMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
