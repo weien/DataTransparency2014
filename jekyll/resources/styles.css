@@ -192,9 +192,15 @@ p {
     margin-right: auto;
 }
 
+#sponsors p {
+    padding: 0 16px 0 13px;/*16px 0 13px 0;*/
+}
+
 #sponsors img {
-    display: block;
+    display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    float: right;
+    vertical-align: middle;
+    /*text-align: center;*/
+    /*float: left;*/
 }
