@@ -18,6 +18,7 @@
 		647DD2FE17C8062C001D1921 /* map-tabbaricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 647DD2FC17C8062C001D1921 /* map-tabbaricon@2x.png */; };
 		647DD30017C81398001D1921 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647DD2FF17C81398001D1921 /* QuartzCore.framework */; };
 		6497013519A581A600754DFF /* Frameworks in Resources */ = {isa = PBXBuildFile; fileRef = 6497013419A581A600754DFF /* Frameworks */; };
+		6497013819A589DE00754DFF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497013719A589DE00754DFF /* Parse.framework */; };
 		649AC03F17D5360000C3333B /* home-tabbaricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 649AC03D17D5360000C3333B /* home-tabbaricon.png */; };
 		649AC04017D5360000C3333B /* home-tabbaricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */; };
 		64C93A7819A452F0004F72D9 /* sponsor_icon_900.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */; };
@@ -78,6 +79,7 @@
 		647DD2FC17C8062C001D1921 /* map-tabbaricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-tabbaricon@2x.png"; sourceTree = "<group>"; };
 		647DD2FF17C81398001D1921 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6497013419A581A600754DFF /* Frameworks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frameworks; sourceTree = "<group>"; };
+		6497013719A589DE00754DFF /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		649AC03D17D5360000C3333B /* home-tabbaricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-tabbaricon.png"; sourceTree = "<group>"; };
 		649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-tabbaricon@2x.png"; sourceTree = "<group>"; };
 		64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sponsor_icon_900.png; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			files = (
 				647DD30017C81398001D1921 /* QuartzCore.framework in Frameworks */,
 				64F09C7B17B041AF007304A8 /* libz.dylib in Frameworks */,
+				6497013819A589DE00754DFF /* Parse.framework in Frameworks */,
 				64F0BE0017AC0EDC0021DA00 /* Social.framework in Frameworks */,
 				64F27FE717A366E800C3272A /* UIKit.framework in Frameworks */,
 				64F27FE917A366E800C3272A /* Foundation.framework in Frameworks */,
@@ -165,6 +168,7 @@
 		6497013619A581EB00754DFF /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				6497013719A589DE00754DFF /* Parse.framework */,
 				64F09C6817B04187007304A8 /* SSZipArchive */,
 			);
 			name = Vendor;
@@ -561,7 +565,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)/DataTransparencyConference",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DataTransparencyConference/DataTransparency2014-Prefix.pch";
@@ -578,7 +583,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)/DataTransparencyConference",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DataTransparencyConference/DataTransparency2014-Prefix.pch";
