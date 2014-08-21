@@ -19,6 +19,13 @@
 		647DD30017C81398001D1921 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647DD2FF17C81398001D1921 /* QuartzCore.framework */; };
 		6497013519A581A600754DFF /* Frameworks in Resources */ = {isa = PBXBuildFile; fileRef = 6497013419A581A600754DFF /* Frameworks */; };
 		6497013819A589DE00754DFF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497013719A589DE00754DFF /* Parse.framework */; };
+		6497013A19A58A2C00754DFF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497013919A58A2C00754DFF /* AudioToolbox.framework */; };
+		6497013C19A58A3200754DFF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497013B19A58A3200754DFF /* CFNetwork.framework */; };
+		6497013E19A58A3700754DFF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497013D19A58A3700754DFF /* CoreLocation.framework */; };
+		6497014019A58A4600754DFF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497013F19A58A4600754DFF /* MobileCoreServices.framework */; };
+		6497014219A58A5200754DFF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497014119A58A5200754DFF /* Security.framework */; };
+		6497014419A58A5800754DFF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497014319A58A5800754DFF /* StoreKit.framework */; };
+		6497014619A58A5D00754DFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6497014519A58A5D00754DFF /* SystemConfiguration.framework */; };
 		649AC03F17D5360000C3333B /* home-tabbaricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 649AC03D17D5360000C3333B /* home-tabbaricon.png */; };
 		649AC04017D5360000C3333B /* home-tabbaricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */; };
 		64C93A7819A452F0004F72D9 /* sponsor_icon_900.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */; };
@@ -80,6 +87,13 @@
 		647DD2FF17C81398001D1921 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6497013419A581A600754DFF /* Frameworks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frameworks; sourceTree = "<group>"; };
 		6497013719A589DE00754DFF /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		6497013919A58A2C00754DFF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6497013B19A58A3200754DFF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6497013D19A58A3700754DFF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6497013F19A58A4600754DFF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6497014119A58A5200754DFF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6497014319A58A5800754DFF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6497014519A58A5D00754DFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		649AC03D17D5360000C3333B /* home-tabbaricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-tabbaricon.png"; sourceTree = "<group>"; };
 		649AC03E17D5360000C3333B /* home-tabbaricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-tabbaricon@2x.png"; sourceTree = "<group>"; };
 		64C93A7619A452F0004F72D9 /* sponsor_icon_900.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sponsor_icon_900.png; sourceTree = "<group>"; };
@@ -151,8 +165,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6497014619A58A5D00754DFF /* SystemConfiguration.framework in Frameworks */,
+				6497014419A58A5800754DFF /* StoreKit.framework in Frameworks */,
+				6497014219A58A5200754DFF /* Security.framework in Frameworks */,
 				647DD30017C81398001D1921 /* QuartzCore.framework in Frameworks */,
+				6497014019A58A4600754DFF /* MobileCoreServices.framework in Frameworks */,
 				64F09C7B17B041AF007304A8 /* libz.dylib in Frameworks */,
+				6497013E19A58A3700754DFF /* CoreLocation.framework in Frameworks */,
+				6497013C19A58A3200754DFF /* CFNetwork.framework in Frameworks */,
+				6497013A19A58A2C00754DFF /* AudioToolbox.framework in Frameworks */,
 				6497013819A589DE00754DFF /* Parse.framework in Frameworks */,
 				64F0BE0017AC0EDC0021DA00 /* Social.framework in Frameworks */,
 				64F27FE717A366E800C3272A /* UIKit.framework in Frameworks */,
@@ -285,6 +306,13 @@
 		64F27FE517A366E800C3272A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6497014519A58A5D00754DFF /* SystemConfiguration.framework */,
+				6497014319A58A5800754DFF /* StoreKit.framework */,
+				6497014119A58A5200754DFF /* Security.framework */,
+				6497013F19A58A4600754DFF /* MobileCoreServices.framework */,
+				6497013D19A58A3700754DFF /* CoreLocation.framework */,
+				6497013B19A58A3200754DFF /* CFNetwork.framework */,
+				6497013919A58A2C00754DFF /* AudioToolbox.framework */,
 				64F09C7A17B041AF007304A8 /* libz.dylib */,
 				647DD2FF17C81398001D1921 /* QuartzCore.framework */,
 				64F0BDFF17AC0EDC0021DA00 /* Social.framework */,
