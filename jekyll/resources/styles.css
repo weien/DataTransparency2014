@@ -191,3 +191,10 @@ p {
     margin-left: auto;
     margin-right: auto;
 }
+
+#sponsors img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: right;
+}
