@@ -370,7 +370,7 @@
                     <attributedString key="userComments">
                         <fragment content="Currently unused">
                             <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
+                                <font key="NSFont" metaFont="toolTip"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -481,7 +481,7 @@
                     <navigationItem key="navigationItem" id="D9I-VI-DmT"/>
                     <connections>
                         <outlet property="DTCWebView" destination="oua-QY-kmK" id="TNI-6H-BBz"/>
-                        <segue destination="Pcp-ez-5Gz" kind="push" id="ZGV-xL-PSQ"/>
+                        <segue destination="Pcp-ez-5Gz" kind="push" identifier="handleExternalLink" id="ZGV-xL-PSQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ncj-79-1pj" sceneMemberID="firstResponder"/>
@@ -496,7 +496,7 @@
         <image name="map-tabbaricon.png" width="27" height="27"/>
         <image name="noun_project_1331.png" width="30" height="30"/>
         <image name="program-tabbaricon.png" width="26" height="28"/>
-        <image name="sponsor_icon_900.png" width="28" height="28"/>
+        <image name="sponsor_icon_900.png" width="38" height="28"/>
         <image name="twitter-bird-light-bgs.png" width="30" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
