@@ -219,3 +219,7 @@ p {
     text-align: center;
     /*float: left;*/
 }
+
+#sponsors {
+    background-color: #FFFFFF; /*#000000;*/
+}
