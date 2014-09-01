@@ -223,3 +223,7 @@ p {
 #sponsors {
     background-color: #FFFFFF; /*#000000;*/
 }
+
+#sponsors a {
+    border-bottom: 0;
+}
