@@ -68,7 +68,7 @@
 #pragma mark - webView handling
 
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    //NSLog(@"Request URL is %@, scheme is %@, last path component is %@, host is %@", request.URL, request.URL.scheme, request.URL.lastPathComponent, request.URL.host);
+//    NSLog(@"Request URL is %@, scheme is %@, last path component is %@, host is %@", request.URL, request.URL.scheme, request.URL.lastPathComponent, request.URL.host);
     if ([request.URL.scheme isEqualToString: @"file"]) {
         if ([request.URL.lastPathComponent isEqualToString:@"index.html"]) { //initial load of given tab
             return YES;
@@ -84,7 +84,8 @@
         }
     }
     else if ([request.URL.absoluteString isEqualToString:@"https://twitter.com/i/jot"] ||
-        [request.URL.absoluteString isEqualToString:@"https://platform.twitter.com/jot.html"]) {
+             [request.URL.absoluteString isEqualToString:@"https://platform.twitter.com/jot.html"] ||
+             [request.URL.absoluteString isEqualToString:@"https://syndication.twitter.com/i/jot/syndication"]) {
         //annoying twitter redirect on twitter tabs, just let 'em do their thing
         return YES;
     }
