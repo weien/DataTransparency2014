@@ -14,7 +14,7 @@
 @implementation AppDelegate
 
 - (void) fetchUpdateOnCustomTabBarController {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = self.window;//[UIApplication sharedApplication].keyWindow;
     CustomTabBarController *rootViewController = (CustomTabBarController*) window.rootViewController;
     [rootViewController fetchUpdate];
 }
