@@ -26,7 +26,7 @@
     //Parse, for push notifications
     [Parse setApplicationId:@"s8dcGkWr1y49D1Lj9puLLEkx0RBQmJRSiFwqfyPs"
                   clientKey:@"5mHE36JvF2CXqK36V1KCaPFcDjQ1y4lQ0WDeQ0QG"];
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert];
     
     return YES;
 }
@@ -40,6 +40,14 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 @end
