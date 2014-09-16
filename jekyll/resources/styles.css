@@ -25,7 +25,7 @@ body {
     font-size: 12pt;
     background-color: #EDEDED; /*#000000;*/
     color: #4e4e4e; /*#fff;*/
-    width: 320px;
+    width: 100%;/*320px;*/
     -webkit-user-select: none;
 }
 .header {
@@ -82,12 +82,12 @@ h2 {
 h3 {
     text-transform: uppercase;
     color: #ffaf31; /*color: #292929; */
+    width: 93%; /*292px;*/
     font-size: 12px;
     font-weight: bold;
     padding: 8px 14px;
     /*border-top: 2px solid #FFCB56;*/
     float: left;
-    width: 292px;
     
 	background: #787878;
     
@@ -114,7 +114,7 @@ h5 {
     
     /*below is borrowed from h3*/
 	padding: 8px 14px;    
-    width: 292px;
+    width: 93%;/*292px;*/
 	background: #787878;  
 }
 .cell {
@@ -196,7 +196,7 @@ p {
     color: #4e4e4e;
 }
 #news {
-    background-color: #fff;
+    background-color: 4e4e4e;/*#fff;*/
     float: left;
     width: 100%;
 }
