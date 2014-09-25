@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DT2014-TopOnly-Transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="VNz-YO-oNo">
+                    <rect key="frame" x="20" y="339" width="335" height="127"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="VNz-YO-oNo" secondAttribute="height" multiplier="555:210" id="0gr-bg-2N7"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="workiva-transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="Njq-cD-PD7">
+                    <rect key="frame" x="20" y="249" width="335" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Njq-cD-PD7" secondAttribute="height" multiplier="750:180" id="KOg-1j-PXp"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="VNz-YO-oNo" firstAttribute="leading" secondItem="Njq-cD-PD7" secondAttribute="leading" id="BIc-kP-nVh"/>
+                <constraint firstAttribute="centerY" secondItem="VNz-YO-oNo" secondAttribute="top" constant="-5" id="Ilb-Ch-5b4"/>
+                <constraint firstAttribute="centerY" secondItem="Njq-cD-PD7" secondAttribute="bottom" constant="5" id="hDb-pJ-uKr"/>
+                <constraint firstItem="VNz-YO-oNo" firstAttribute="trailing" secondItem="Njq-cD-PD7" secondAttribute="trailing" id="iKs-I9-cfd"/>
+                <constraint firstItem="Njq-cD-PD7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="kbm-dF-Fgx"/>
+                <constraint firstAttribute="trailing" secondItem="Njq-cD-PD7" secondAttribute="trailing" constant="20" id="mAW-qL-sWm"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="547.5" y="454.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="DT2014-TopOnly-Transparent.png" width="556" height="210"/>
+        <image name="workiva-transparent.png" width="753" height="182"/>
+    </resources>
+</document>
