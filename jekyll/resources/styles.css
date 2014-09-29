@@ -82,10 +82,10 @@ h2 {
 h3 {
     text-transform: uppercase;
     color: #ffaf31; /*color: #292929; */
-    width: 93%; /*292px;*/
+    width: 100%; /*292px;*/
     font-size: 12px;
     font-weight: bold;
-    padding: 8px 14px;
+    /*padding: 8px 14px;*/
     /*border-top: 2px solid #FFCB56;*/
     float: left;
     
@@ -113,10 +113,17 @@ h5 {
     margin-top: -.3em;  
     
     /*below is borrowed from h3*/
-	padding: 8px 14px;    
-    width: 93%;/*292px;*/
+	/*padding: 8px 14px;*/    
+    width: 100%;/*292px;*/
 	background: #787878;  
+	float: left;
 }
+
+h3 span, h5 span {
+	padding: 8px 14px;
+	float: left;
+}
+
 .cell {
     line-height: 130%;
     padding: 16px 14px 9px 14px;
